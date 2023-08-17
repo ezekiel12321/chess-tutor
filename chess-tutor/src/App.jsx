@@ -20,13 +20,13 @@ function App() {
 
   return (
     <div>
-      <NavBar />
+      
       <div style={{display: 'flex', justifyContent: 'space-between'}}>
-        <div style={{ width: "600px", height: "600px"}}>
+        <div style={{ width: "45%", height: "45%", border: "2px solid black"}}>
           <PlayRandomMoveEngine onUpdate={handleUpdate} />  
         </div>
-        <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start'}}>
-          <Section 
+        <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-end', flex: 1}}>
+          <Section
             move={bestMove} 
             analysis={analysis}
           />

@@ -1,40 +1,17 @@
 import React from 'react';
 
-const sectionStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  padding: '20px',
-  backgroundColor: '#f5f5f5',
-  color: '#333',
-  fontFamily: 'Arial, sans-serif',
-  lineHeight: '1.5em',
-};
-
-const moveStyle = {
-  fontSize: '1.2em',
-  marginBottom: '20px',
-};
-
-const analysisStyle = {
-  fontSize: '1.5em',
-  maxWidth: '80%',
-  textAlign: 'justify',
-};
-
-const BestMove = ({ move }) => (
-  <p style={moveStyle}>{`Best Move: ${move}`}</p>
+const BestMove = ({ move, style }) => (
+  <p style={style}>{`Best Move: ${move}`}</p>
 );
 
-const Analysis = ({ analysis }) => (
-  <p style={analysisStyle}>{`Analysis: ${analysis}`}</p>
+const Analysis = ({ analysis, style }) => (
+  <p style={style}>{`Analysis: ${analysis}`}</p>
 );
 
 const Section = ({ move, analysis }) => (
-  <section style={sectionStyle}>
-    <BestMove move={move} />
-    <Analysis analysis={analysis} />
+  <section style={{ border: '2px solid black', width: "90%", height: "100%", padding: "5px" }}>
+    <BestMove move={move} style={{ padding: "5px" }} />
+    <Analysis analysis={analysis} style={{ margin: "5px" }} />
   </section>
 );
 

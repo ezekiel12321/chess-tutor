@@ -3,6 +3,19 @@ from flask_cors import CORS, cross_origin
 import chess.engine
 import openai
 import os
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+import smtplib
+from dotenv import load_dotenv
+
+load_dotenv()
+
+email_user = os.getenv('EMAIL_USER')
+email_pass = os.getenv('EMAIL_PASS')
+open_ai = os.getenv('OPENAI')
+
+
+
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
@@ -20,6 +33,32 @@ def after_request(response):
 def hello():
     return 'hello'
 
+@app.route('/send-email', methods=['POST'])
+def send_email():
+    name = request.form['name']
+    email = request.form['email']
+    message = request.form['message']
+
+    # Create the email content
+    subject = f"Message from {name}"
+    body = f"From: {name} <{email}>\n\n{message}"
+
+    msg = MIMEMultipart()
+    msg['From'] = email
+    msg['To'] = 'norman.zeke11@gmail.com'
+    msg['Subject'] = subject
+    msg.attach(MIMEText(body, 'plain'))
+
+    # Send the email
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.starttls()
+    server.login(email_user, email_pass)
+    server.send_message(msg)
+    server.quit()
+
+    return {'status': 'success'}
+
+
 
 @app.route('/analyze', methods=['POST', 'OPTIONS'])
 def analyze():
@@ -28,7 +67,7 @@ def analyze():
         return make_response(('Allowed', 200))
     
     fen = request.json['fen']
-    openai.api_key = os.getenv('OPENAI_API_KEY')
+    openai.api_key =open_ai
     
     engine = chess.engine.SimpleEngine.popen_uci('/opt/homebrew/bin/stockfish')
     board = chess.Board(fen)
