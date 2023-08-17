@@ -31,7 +31,7 @@ export default function PlayRandomMoveEngine({ onUpdate }) {
     // illegal move
     if (move === null) return false;
     try {
-        const response = await fetch('http://ezekiel12321.pythonanywhere.com/analyze', {
+        const response = await fetch('https://ezekiel12321.pythonanywhere.com/analyze', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ export default function PlayRandomMoveEngine({ onUpdate }) {
     }
       
     try {
-        const response = await fetch('http://ezekiel12321.pythonanywhere.com//hello');
+        const response = await fetch('https://ezekiel12321.pythonanywhere.com/hello');
         const data = await response.text();
 
         console.log('Response:', data);
