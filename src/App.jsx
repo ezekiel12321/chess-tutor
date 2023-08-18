@@ -31,7 +31,9 @@ function App() {
             analysis={analysis}
           />
         </div>
+        
       </div>
+     
     </div>
   );
 }

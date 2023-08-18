@@ -9,6 +9,7 @@ const Analysis = ({ analysis, style }) => (
 );
 
 const Section = ({ move, analysis }) => (
+  
   <section style={{ border: '2px solid black', width: "90%", height: "100%", padding: "5px" }}>
     <BestMove move={move} style={{ padding: "5px" }} />
     <Analysis analysis={analysis} style={{ margin: "5px" }} />
